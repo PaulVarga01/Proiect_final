@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Proiect_final.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<Proiect_finalContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Proiect_finalContext") ?? throw new InvalidOperationException("Connection string 'Proiect_finalContext' not found.")));
 
 var app = builder.Build();
 
